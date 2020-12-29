@@ -1,0 +1,19 @@
+{
+  "name": "validationLibrary",
+  "version": "1.0.0",
+  "description": "Custom validation library",
+  "main": "index.js",
+  "author": "Renzo Navarro",
+  "license": "MIT",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "calidators": "^3.0.2",
+    "parcel-bundler": "^1.12.4",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "use-deep-compare-effect": "^1.6.1"
+  }
+}
