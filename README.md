@@ -1,7 +1,7 @@
 # Creating a library for validation purposes
 
-This is a proof of concept that shows a validation feature made from scratch.
-Available validation modes: always, blur, and submit 
+This is a proof of concept that implements form validation from scratch by using state management, hooks and contexts.  
+Available validation modes: always, blur, and submit.
 
 <p align="center">
   <img align="center" width="295" height="180" src="/src/utils/images/validate.png">
