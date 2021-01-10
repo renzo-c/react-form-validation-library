@@ -1,9 +1,9 @@
-const config = (fields) => ({
+const config = (fields, validationMode) => ({
   fields: {
     username: {
       // messages can be passed either as strings or objects thanks to validateField function
       isRequired: "Please fill out a username",
-      initialValue: "My username",
+      // initialValue: "My username",
     },
     password: {
       isRequired: { message: "Please fill out a password" },
@@ -21,7 +21,7 @@ const config = (fields) => ({
       alert("The form still has errors!");
     }
   },
-  showErrors: "always",
+  showErrors: validationMode, //always, blur, submit
 });
 
 export default config;

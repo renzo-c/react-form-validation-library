@@ -1,41 +1,24 @@
 import React, { useContext } from "react";
 import { ValidationContext } from "../../context/ValidationContext";
+import { Button, DivError, Form, Input, Label } from "./loginForm-styles";
 
 const LoginForm = () => {
-  const { getFieldProps, getFormProps, isFormValid, errors } = useContext(
+  const { getFieldProps, getFormProps, isFormValid, errors, showErrors } = useContext(
     ValidationContext
   );
 
   return (
-    <form {...getFormProps()}>
-      <div>
-        <label>
-          Username
-          <br />
-          <input {...getFieldProps("username")} />
-          {errors.username && <div className="error">{errors.username}</div>}
-        </label>
-      </div>
-      <div>
-        <label>
-          Password
-          <br />
-          <input type="password" {...getFieldProps("password")} />
-          {errors.password && <div className="error">{errors.password}</div>}
-        </label>
-      </div>
-      {isFormValid ? (
-        <div>
-          <span role="img" aria-label="checkmark">
-            ✅
-          </span>{" "}
-          The form is valid and ready to go!
-        </div>
-      ) : (
-        <div className="error">Please fix the errors in your form!</div>
-      )}
-      <button type="submit">Submit my form</button>
-    </form>
+    <Form {...getFormProps()}>
+      <Label>Username</Label>
+      <Input error={errors.username} {...getFieldProps("username")} />
+      {errors.username ? <DivError>{errors.username}</DivError> : <DivError visibility="hidden">Error Message</DivError>}
+
+      <Label>Password</Label>
+      <Input error={errors.password} {...getFieldProps("password")} />
+      {errors.password ? <DivError>{errors.password}</DivError> : <DivError visibility="hidden">Error Message</DivError>}
+
+      <Button type="submit" disabled={!isFormValid && showErrors !== 'submit'}>Submit my form</Button>
+    </Form>
   );
 };
 

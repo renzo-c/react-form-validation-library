@@ -1,7 +1,20 @@
-use of reducers and hooks
+Creating a library for validation purposes
 
-cross validation
-options: blur, change, submit
-includes aria-invalid in fields with errors
+This is a proof of concept that shows a validation feature made from scratch.
+Available validation modes: always, blur, and submit 
 
-Source: https://www.smashingmagazine.com/2019/05/react-validation-library-features-part2/
+Libraries:
+styled-components: For style purposes
+react-spring: To animate the background
+calidators: Set of validators
+
+Tools:
+Reducers: To centralize state management
+Hooks: To return all validation-related variables and methods from local storage (useValidate)
+Context: To provide the whole project with what the hook useValidate returns 
+useRef to implement modal-closing when clicking away
+
+
+References: https://www.smashingmagazine.com/2019/05/react-validation-library-features-part2/
+
+

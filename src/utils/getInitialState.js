@@ -1,4 +1,4 @@
-import validateFields from "../utils/validateFields";
+import { validateFields } from "../utils";
 
 const getInitialState = (config) => {
   if (typeof config === "function") {
@@ -20,6 +20,7 @@ const getInitialState = (config) => {
     errors: initialErrors,
     blurred: initialBlurred,
     submitted: false,
+    showErrors: "always",
   };
 };
 
