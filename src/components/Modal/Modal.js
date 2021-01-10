@@ -41,7 +41,7 @@ const Modal = ({ open, setOpen, style }) => {
       <animated.div style={style} className="modal">
         <Background ref={modalRef} onClick={handleClickAway}>
           <ModalWrapper>
-            <ModalImg src={require("./ice.jpg")} alt="camera" />
+            <ModalImg src={require("../../utils/images/ice.jpg")} alt="camera" />
             <ModalContent>
               <ValidationSelector/>
               <h1>Are you ready?</h1>
