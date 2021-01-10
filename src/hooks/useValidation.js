@@ -1,12 +1,14 @@
 import { useReducer, useMemo } from "react";
 
 import validationReducer from "../reducers/validationReducer";
-import validateFields from "../utils/validateFields";
+import {
+  validateFields,
+  getErrors,
+  getInitialState,
+  validateConfigSchema,
+} from "../utils";
 
 import useDeepCompareEffect from "use-deep-compare-effect";
-import getErrors from "../utils/getErrors";
-import getInitialState from "../utils/getInitialState";
-import validateConfigSchema from "../utils/validateConfigSchema";
 
 const useValidation = (validationConfig) => {
   validateConfigSchema(validationConfig);
@@ -15,9 +17,8 @@ const useValidation = (validationConfig) => {
     validationReducer,
     getInitialState(validationConfig)
   );
-
   if (typeof validationConfig === "function") {
-    validationConfig = validationConfig(state.values);
+    validationConfig = validationConfig(state.values, state.showErrors);
   }
 
   useDeepCompareEffect(() => {
@@ -32,15 +33,18 @@ const useValidation = (validationConfig) => {
     validationConfig.showErrors,
   ]);
 
-  const isFormValid = useMemo(
-    () => Object.values(errors).every((error) => error === null),
-    [errors]
-  );
+  const isFormValid = useMemo(() => {
+    if (Object.keys(errors).length === 0) {
+      return false;
+    }
+    return Object.values(errors).every((error) => error === null);
+  }, [errors]);
 
   return {
     errors,
     submitted: state.submitted,
     isFormValid,
+    showErrors: state.showErrors,
 
     getFormProps: (overrides = {}) => ({
       onSubmit: (e) => {
@@ -49,13 +53,13 @@ const useValidation = (validationConfig) => {
         if (validationConfig.onSubmit) {
           validationConfig.onSubmit({ ...state, isFormValid });
         }
-        
+
         if (overrides.onSubmit) {
-          overrides.onSubmit(e)
+          overrides.onSubmit(e);
         }
       },
     }),
-    
+
     getFieldProps: (fieldName, overrides = {}) => ({
       onChange: (e) => {
         const { value } = e.target;
@@ -73,7 +77,6 @@ const useValidation = (validationConfig) => {
           overrides.onChange(e);
         }
       },
-
       onBlur: () => {
         dispatch({ type: "blur", payload: fieldName });
 
@@ -85,6 +88,12 @@ const useValidation = (validationConfig) => {
       name: overrides.name || fieldName,
       value: state.values[fieldName] || "",
       "aria-invalid": String(!!errors[fieldName]),
+    }),
+    getValidationMode: (validationMode) => ({
+      checked: state.showErrors === validationMode ? "checked" : null,
+      onChange: () => {
+        dispatch({ type: "validationMode", payload: validationMode });
+      },
     }),
   };
 };
