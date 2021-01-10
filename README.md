@@ -1,7 +1,10 @@
 # Creating a library for validation purposes
 
 This is a proof of concept that implements form validation from scratch by using state management, hooks and contexts.  
+<br/>
 Available validation modes: always, blur, and submit.
+
+See <a href="https://validation-library.herokuapp.com/" target="_blank">Demo</a>
 
 <p align="center">
   <img align="center" width="295" height="180" src="/src/utils/images/validate.png">
