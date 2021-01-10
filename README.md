@@ -3,7 +3,9 @@
 This is a proof of concept that shows a validation feature made from scratch.
 Available validation modes: always, blur, and submit 
 
-![Image of validation](/src/utils/images/validate.png)
+<p align="center">
+  <img align="center" width="295" height="180" src="/src/utils/images/validate.png">
+</p>
 
 ## Libraries:
 - styled-components: For style purposes
@@ -16,5 +18,3 @@ Available validation modes: always, blur, and submit
 - Hook useRef: to implement modal-closing when clicking away
 
 #### References: https://www.smashingmagazine.com/2019/05/react-validation-library-features-part2/
-
-
