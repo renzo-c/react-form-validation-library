@@ -9,7 +9,7 @@ const validateField = (fieldValue = "", fieldConfig) => {
       continue;
     }
 
-    const validatorConfig = fieldConfig[validatorName];
+    let validatorConfig = fieldConfig[validatorName];
     
     if (typeof validatorConfig === "string") {
       validatorConfig = { message: validatorConfig };
