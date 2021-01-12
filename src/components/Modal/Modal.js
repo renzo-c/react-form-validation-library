@@ -37,7 +37,6 @@ const Modal = ({ open, setOpen, style }) => {
   }, [keyPress]);
 
   return (
-    <>
       <animated.div style={style} className="modal">
         <Background ref={modalRef} onClick={handleClickAway}>
           <ModalWrapper>
@@ -55,7 +54,6 @@ const Modal = ({ open, setOpen, style }) => {
           </ModalWrapper>
         </Background>
       </animated.div>
-    </>
   );
 };
 
